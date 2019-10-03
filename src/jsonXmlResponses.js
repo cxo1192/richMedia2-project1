@@ -15,10 +15,10 @@ const respondMeta = (request, response, status) => {
 
 const addUser = (request, response, body) => {
   const responseJSON = {
-    message: 'Name and Age are both required.',
+    message: 'Name and Description are both required.',
   };
 
-  if (!body.name || !body.age) {
+  if (!body.name || !body.desc) {
     responseJSON.id = 'missingParams';
     return respond(request, response, 400, responseJSON);
   }
@@ -34,9 +34,26 @@ const addUser = (request, response, body) => {
     users[body.name] = {};
   }
 
+  let newSticky = {};
+
   // add or update fields for this user name
-  users[body.name].name = body.name;
-  users[body.name].age = body.age;
+  newSticky.name = body.name;
+
+  if (body.title) {
+    newSticky.title = body.title;
+  }
+
+  if (body.place) {
+    newSticky.place = body.place;
+  }
+
+  if (body.time) {
+   newSticky.time = body.time;
+  }
+
+  newSticky.desc = body.desc;
+
+  users[body.name] += newSticky;
 
   // if response is created, then set our created message
   // and sent response with a message
@@ -51,7 +68,7 @@ const addUser = (request, response, body) => {
 };
 
 // return user object as JSON
-const getUsers = (request, response) => {
+const getUsers = (request, response) => { //////////////////////////////////////////////////////////Change this to give baCK STICKIES BASED ON USERS///////////////////
   const responseJSON = {
     users,
   };

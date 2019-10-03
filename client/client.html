@@ -68,9 +68,13 @@
       const nameAction = nameForm.getAttribute('action');
       const nameMethod = nameForm.getAttribute('method');
 
-      //grab the form's name and age fields so we can check user input
+      //grab the form's name, title, place, time, and desc fields so we can check user input
         const nameField = nameForm.querySelector('#nameField');
-        const ageField = nameForm.querySelector('#ageField');
+        const titleField = nameForm.querySelector('#titleField');
+        const placeField = nameForm.querySelector('#placeField');
+        const timeField = nameForm.querySelector('#timeField');
+        const descField = nameForm.querySelector('#descField');
+        
       
       
       //create a new Ajax request (remember this is asynchronous)
@@ -95,10 +99,10 @@
       //The format is the same as query strings, so key=value&key2=value2
       //The 'name' fields from the inputs are the variable names sent to
       //the server. 
-      //So ours might look like  name=test&age=22
+      //So ours might look like  name=test&desc=22
       //Again the 'name' fields in the form are the variable names in the string
       //and the variable names the server will look for.
-      const formData = `name=${nameField.value}&age=${ageField.value}`;
+      const formData = `name=${nameField.value}&title=${titleField.value}&place=${placeField.value}&time=${timeField.value}&desc=${descField.value}`;
       
       //send our request with the data
       xhr.send(formData);
@@ -171,13 +175,19 @@
 </head>
 <body>
   <section id="top">
-    <h3>POST Status Code Tests</h3>
+    <h3>ToDo Stickies</h3>
     <form id="nameForm" action="/addUser" method="post">
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
-      <label for="age">Age: </label>
-      <input id="ageField" type="number" name="age" min="0" max="100" step="1"/>
-      <input type="submit" value="Add User" />
+      <label for="title">Event Title: </label>
+      <input id="titleField" type="text" name="title" />
+      <label for="place">Place: </label>
+      <input id="placeField" type="text" name="place"/>
+      <label for="time">Time: </label>
+      <input id="timeField" type="text" name="time"/>
+      <label for="desc">Description: </label>
+      <input id="descField" type="text" name="desc"/>
+      <input type="submit" value="Add Sticky" />
     </form>
     <form id="userForm" action="/getUsers" method="get">
       <select id='urlField'>
@@ -188,7 +198,7 @@
         <option value="get">GET</option>
         <option value="head">HEAD</option>
       </select>
-      <input type="submit" value="Get User" />
+      <input type="submit" value="Get Stickys" />
     </form>
   </section>
   <section id="content">
