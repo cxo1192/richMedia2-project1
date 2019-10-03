@@ -60,7 +60,7 @@ const getUsers = (request, response) => {
 };
 
 
-const notFound = (request, response,/* , params , type */) => {
+const notFound = (request, response/* , params , type */) => {
   const responseJSON = {
     message: 'The page you are looking for was not found.',
     id: 'notFound',

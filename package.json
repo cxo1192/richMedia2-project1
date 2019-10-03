@@ -1,7 +1,7 @@
 {
-  "name": "http-api-assignment-ii",
+  "name": "richmedia2-project1",
   "version": "1.0.0",
-  "description": "http api assignment 2",
+  "description": "Project 1",
   "main": "./src/server.js",
   "scripts": {
     "start": "node ./src/server.js",
@@ -10,17 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cxo1192/http-api-assignment-ii.git"
+    "url": "git+https://github.com/cxo1192/richMedia2-project1.git"
   },
   "author": "Cameron Ostrom",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/cxo1192/http-api-assignment-ii/issues"
+    "url": "https://github.com/cxo1192/richMedia2-project1/issues"
   },
-  "homepage": "https://github.com/cxo1192/http-api-assignment-ii#readme",
+  "homepage": "https://github.com/cxo1192/richMedia2-project1#readme",
   "devDependencies": {
-    "eslint": "^6.4.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.3"
   }
 }
