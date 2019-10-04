@@ -34,7 +34,7 @@ const addUser = (request, response, body) => {
     users[body.name] = {};
   }
 
-  let newSticky = {};
+  const newSticky = {};
 
   // add or update fields for this user name
   newSticky.name = body.name;
@@ -48,7 +48,7 @@ const addUser = (request, response, body) => {
   }
 
   if (body.time) {
-   newSticky.time = body.time;
+    newSticky.time = body.time;
   }
 
   newSticky.desc = body.desc;
@@ -68,7 +68,7 @@ const addUser = (request, response, body) => {
 };
 
 // return user object as JSON
-const getUsers = (request, response) => { //////////////////////////////////////////////////////////Change this to give baCK STICKIES BASED ON USERS///////////////////
+const getUsers = (request, response) => { // Change this to give baCK STICKIES BASED ON USERS
   const responseJSON = {
     users,
   };
