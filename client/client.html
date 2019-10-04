@@ -20,11 +20,11 @@
         content.appendChild(p);
       }
       
-      //if users in response, add to screen
-      if(obj.users) {
+      //if events in response, add to screen
+      if(obj.events) {
         const userList = document.createElement('p');
-        const users = JSON.stringify(obj.users);
-        userList.textContent = users;
+        const events = JSON.stringify(obj.events); //maybe this is problem
+        userList.textContent = events;
         content.appendChild(userList);
       }
     };

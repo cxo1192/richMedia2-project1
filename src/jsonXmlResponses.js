@@ -1,4 +1,4 @@
-const users = {};
+const events = {};
 
 
 const respond = (request, response, status, /* object, */content/* , type */) => {
@@ -15,45 +15,60 @@ const respondMeta = (request, response, status) => {
 
 const addUser = (request, response, body) => {
   const responseJSON = {
-    message: 'Name and Description are both required.',
+    message: 'Title and Description are both required.',
   };
 
-  if (!body.name || !body.desc) {
+  if (!body.title || !body.desc) {
     responseJSON.id = 'missingParams';
     return respond(request, response, 400, responseJSON);
   }
 
   // defaults to created
   let responseCode = 201;
-  // if that user's name already exists in our object
+  // if that user's title already exists in our object
   // then switch to a 204 updated status
-  if (users[body.name]) {
+  if (events[body.title]) {
     responseCode = 204;
   } else {
-    // otherwise create an object with that name
-    users[body.name] = {};
+    // otherwise create an object with that title
+    events[body.title] = {};
   }
 
-  const newSticky = {};
+  // const newSticky = {};
 
-  // add or update fields for this user name
-  newSticky.name = body.name;
+  // add or update fields for this user title
+  // newSticky.title = body.title;
 
-  if (body.title) {
-    newSticky.title = body.title;
+  // if (body.name) {
+  //   newSticky.title = body.name;
+  // }
+
+  // if (body.place) {
+  //   newSticky.place = body.place;
+  // }
+
+  // if (body.time) {
+  //   newSticky.time = body.time;
+  // }
+
+  // newSticky.desc = body.desc;
+
+  // events[body.title].event = newSticky;
+  // events[body.title].title = body.title;
+  events[body.title].desc = body.desc;
+
+  if (body.name) {
+    events[body.title].name = body.name;
   }
 
   if (body.place) {
-    newSticky.place = body.place;
+    events[body.title].place = body.place;
   }
 
   if (body.time) {
-    newSticky.time = body.time;
+    events[body.title].time = body.time;
   }
 
-  newSticky.desc = body.desc;
-
-  users[body.name] += newSticky;
 
   // if response is created, then set our created message
   // and sent response with a message
@@ -70,7 +85,7 @@ const addUser = (request, response, body) => {
 // return user object as JSON
 const getUsers = (request, response) => { // Change this to give baCK STICKIES BASED ON USERS
   const responseJSON = {
-    users,
+    events,
   };
 
   return respond(request, response, 200, responseJSON);
