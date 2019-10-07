@@ -130,6 +130,7 @@
       const xhr = new XMLHttpRequest();
       //set the method (GET) and url (action field from form)
       xhr.open(nameMethod, urlField.value);
+      //xhr.open(nameMethod, urlField.value + `eventTitle=${/*data to grab*/}`); need this for the get
       
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       //set our requested response type in hopes of a JSON response
