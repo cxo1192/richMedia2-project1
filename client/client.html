@@ -129,9 +129,9 @@
       //create a new Ajax request (remember this is asynchronous)
       const xhr = new XMLHttpRequest();
       //set the method (GET) and url (action field from form)
-      xhr.open(nameMethod, '/getUsers');
+      xhr.open(nameMethod, '/getEvents');
       //xhr.open(nameMethod, eventSearch.value + `eventTitle=${/*data to grab*/}`); need this for the get ---old
-      //xhr.open(nameMethod, '/getUsers' + `eventTitle=${/*data to grab*/}`); need this for the get
+      //xhr.open(nameMethod, '/getEvents' + `eventTitle=${/*data to grab*/}`); need this for the get
       
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       //set our requested response type in hopes of a JSON response
@@ -162,15 +162,15 @@
       const userForm = document.querySelector('#userForm')
       
       //create handler
-      const addUser = (e) => sendPost(e, nameForm);
+      const addEvent = (e) => sendPost(e, nameForm);
 
-      const getUsers = (e) => sendGet(e, userForm);
+      const getEvents = (e) => sendGet(e, userForm);
       
       //attach submit event (for clicking submit or hitting enter)
-      nameForm.addEventListener('submit', addUser);
+      nameForm.addEventListener('submit', addEvent);
 
       //attach submit event (for clicking submit or hitting enter)
-      userForm.addEventListener('submit', getUsers);
+      userForm.addEventListener('submit', getEvents);
     };
     window.onload = init;
   </script>
@@ -178,7 +178,7 @@
 <body>
   <section id="top">
     <h3>ToDo Stickies</h3>
-    <form id="nameForm" action="/addUser" method="post">
+    <form id="nameForm" action="/addEvent" method="post">
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
       <label for="title">Event Title: </label>
@@ -191,7 +191,7 @@
       <input id="descField" type="text" name="desc"/>
       <input type="submit" value="Add Sticky" />
     </form>
-    <form id="userForm" action="/getUsers" method="get">
+    <form id="userForm" action="/getEvents" method="get">
       <!-- <select id='urlField'>
         <option value='/getUsers'>/getUsers</option>
         <option value='/notReal'>/notReal</option>

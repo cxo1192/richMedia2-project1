@@ -13,7 +13,7 @@ const respondMeta = (request, response, status) => {
   response.end();
 };
 
-const addUser = (request, response, body) => {
+const addEvent = (request, response, body) => {
   const responseJSON = {
     message: 'Title and Description are both required.',
   };
@@ -83,7 +83,7 @@ const addUser = (request, response, body) => {
 };
 
 // return user object as JSON
-const getUsers = (request, response) => { // Change this to give baCK STICKIES BASED ON USERS
+const getEvents = (request, response) => { // Change this to give baCK STICKIES BASED ON USERS
   const responseJSON = {
     events,
   };
@@ -104,8 +104,8 @@ const notFound = (request, response/* , params , type */) => {
 module.exports = {
   // success,
   // badRequest,
-  addUser,
-  getUsers,
+  addEvent,
+  getEvents,
   notFound,
   // unauthorized,
   // forbidden,

@@ -8,8 +8,8 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 // handle POST requests
 const handlePost = (request, response, parsedUrl) => {
-  // if post is to /addUser (our only POST url)
-  if (parsedUrl.pathname === '/addUser') {
+  // if post is to /addEvent (our only POST url)
+  if (parsedUrl.pathname === '/addEvent') {
     const res = response;
 
     // uploads come in as a byte stream that we need
@@ -40,8 +40,8 @@ const handlePost = (request, response, parsedUrl) => {
       // Parse the string into an object by field name
       const bodyParams = query.parse(bodyString);
 
-      // pass to our addUser function
-      jsonXmlHandler.addUser(request, res, bodyParams);
+      // pass to our addEvent function
+      jsonXmlHandler.addEvent(request, res, bodyParams);
     });
   }
 };
@@ -52,8 +52,8 @@ const handleGet = (request, response, parsedUrl) => {
   // route to correct method based on url
   if (parsedUrl.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
-  } else if (parsedUrl.pathname === '/getUsers') {
-    jsonXmlHandler.getUsers(request, response);
+  } else if (parsedUrl.pathname === '/getEvents') {
+    jsonXmlHandler.getEvents(request, response);
   } else if (parsedUrl.pathname === '/notReal') {
     jsonXmlHandler.notFound(request, response);
   } else {
@@ -65,8 +65,8 @@ const handleGet = (request, response, parsedUrl) => {
 const urlStruct = {
   '/': htmlHandler.getIndex,
   '/style.css': htmlHandler.getCSS,
-  '/addUser': handlePost,
-  '/getUsers': handleGet,
+  '/addEvent': handlePost,
+  '/getEvents': handleGet,
   notFound: jsonXmlHandler.notFound,
 };
 
