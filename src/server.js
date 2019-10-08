@@ -72,7 +72,7 @@ const urlStruct = {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  //const params = query.parse(parsedUrl.query);    //will need this for get with text
+  // const params = query.parse(parsedUrl.query);    //will need this for get with text
   // const types = request.headers.accept.split(',');
 
   if (urlStruct[parsedUrl.pathname]) {
