@@ -8,12 +8,23 @@ html, body {
 #top {
   text-align: center;
   margin: 0 auto;
-  
+  font-family: Candara;
+  background-color: #4357AD;
+  color: white;
+  border-radius: 25px;
+  margin-right: 5%;
+  margin-left: 5%;
+  border-color: black;
+  border-width: 5px;
+  padding-bottom: 10px;
 }
+
 
 #top h1 {
   font-size: 2em;
+  font-style: italic;
 }
+
 
 #content {
   /* width:95%; */
@@ -21,10 +32,11 @@ html, body {
   border-radius: 25px;
   /* border-width: 10%; */
   border-color:silver;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
   font-size: 2em;
   text-align: center;
   background-color: rgb(210,177,114);  /*background-image: url(../client/cork.jpg);*/
@@ -33,6 +45,7 @@ html, body {
 #content b{
   text-align: center;
   margin: 0 auto;
+  color: white;
 }
 
 #content p {

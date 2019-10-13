@@ -46,7 +46,7 @@
           content.innerHTML = `<b>Success</b><br>`;
           break;
         case 201: //created
-          content.innerHTML = '<b>Create</b><br>';
+          content.innerHTML = '<b>Created</b><br>';
           break;
         case 204: //updated (no response back from server)
           content.innerHTML = '<b>Updated (No Content)</b><br>';
@@ -185,7 +185,7 @@
 </head>
 <body>
   <section id="top">
-    <h3>ToDo Stickies</h3>
+    <h1>ToDo Stickies</h1>
     <form id="nameForm" action="/addEvent" method="post">
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
@@ -199,6 +199,7 @@
       <input id="descField" type="text" name="desc"/>
       <input type="submit" value="Add Sticky" />
     </form>
+    <br>
     <form id="userForm" action="/getEvents" method="get">
       <!-- <select id='urlField'>
         <option value='/getUsers'>/getUsers</option>
