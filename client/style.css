@@ -30,7 +30,14 @@ html, body {
   background-color: rgb(210,177,114);  /*background-image: url(../client/cork.jpg);*/
 }
 
+#content b{
+  text-align: center;
+  margin: 0 auto;
+}
+
 #content p {
+  /* display: inline; */
+  float: left;
   background-color: yellow;
   color: black;
   width: 10%;
