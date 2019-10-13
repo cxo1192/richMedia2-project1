@@ -55,7 +55,6 @@ const addEvent = (request, response, body) => {
 
   // events[body.title].event = newSticky;
   // events[body.title].title = body.title;
-  events[body.title].desc = body.desc;
 
   if (body.name) {
     events[body.title].name = body.name;
@@ -68,6 +67,9 @@ const addEvent = (request, response, body) => {
   if (body.time) {
     events[body.title].time = body.time;
   }
+
+  events[body.title].desc = body.desc;
+
 
 
   // if response is created, then set our created message

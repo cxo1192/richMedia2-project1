@@ -22,10 +22,18 @@
       
       //if events in response, add to screen
       if(obj.events) {
-        const userList = document.createElement('p');
-        const events = JSON.stringify(obj.events); //maybe this is problem
-        userList.textContent = events;
-        content.appendChild(userList);
+        for(let ev in obj.events){
+          const sticky = document.createElement('p');
+          let events = JSON.stringify(ev) + JSON.stringify(obj.events[ev]);
+          events = events.replace(/{|}+/g, '');
+          events = events.replace(/,/g, '\n');
+          events = events.replace('"desc":', 'Description: ');
+          events = events.replace('"name":', 'User: ');
+          events = events.replace('"time":', 'Time: ');
+          events = events.replace('"place":', 'Location: ');
+          sticky.textContent = events;
+          content.appendChild(sticky);
+        }
       }
     };
     //function to handle our response
