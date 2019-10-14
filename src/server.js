@@ -70,6 +70,7 @@ const urlStruct = {
   notFound: jsonXmlHandler.notFound,
 };
 
+// handles requests and call the appropriate methods stored in the urlStruct
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
   const params = query.parse(parsedUrl.query); // will need this for get with text
@@ -78,13 +79,10 @@ const onRequest = (request, response) => {
     head = true;
   }
 
-  // console.log(`onRequest params: ${JSON.stringify(params)}`);
-  // const types = request.headers.accept.split(',');
-
   if (urlStruct[parsedUrl.pathname]) {
     urlStruct[parsedUrl.pathname](request, response, parsedUrl, params, head /* , types */);
   } else {
-    urlStruct.notFound(request, response/* , params, types */);
+    urlStruct.notFound(request, response, head/* , params, types */);
   }
 };
 

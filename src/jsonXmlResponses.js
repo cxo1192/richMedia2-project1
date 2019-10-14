@@ -1,18 +1,19 @@
 const events = {};
 
-
+// sends a response with status code and content
 const respond = (request, response, status, /* object, */content/* , type */) => {
   response.writeHead(status, { 'Content-Type': /* type */ 'application/json' });
   response.write(JSON.stringify(content));
   // response.write(content);
   response.end();
 };
-
+// sends response with status code but no content
 const respondMeta = (request, response, status) => {
   response.writeHead(status, { 'Content-Type': 'application/json' });
   response.end();
 };
 
+// adds inputed data to the server
 const addEvent = (request, response, body) => {
   const responseJSON = {
     message: 'Title and Description are both required.',
@@ -33,28 +34,6 @@ const addEvent = (request, response, body) => {
     // otherwise create an object with that title
     events[body.title] = {};
   }
-
-  // const newSticky = {};
-
-  // add or update fields for this user title
-  // newSticky.title = body.title;
-
-  // if (body.name) {
-  //   newSticky.title = body.name;
-  // }
-
-  // if (body.place) {
-  //   newSticky.place = body.place;
-  // }
-
-  // if (body.time) {
-  //   newSticky.time = body.time;
-  // }
-
-  // newSticky.desc = body.desc;
-
-  // events[body.title].event = newSticky;
-  // events[body.title].title = body.title;
 
   if (body.name) {
     events[body.title].name = body.name;
@@ -153,7 +132,7 @@ const getEvents = (request, response, params, head) => { // Change this
   return respondMeta(request, response, 200);
 };
 
-
+// sends error back when data is searched for and not found
 const notFound = (request, response, head/* , params , type */) => {
   if (head === false) {
     const responseJSON = {
