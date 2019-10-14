@@ -84,7 +84,7 @@ const addEvent = (request, response, body) => {
 };
 
 // return user object as JSON
-const getEvents = (request, response, params) => { // Change this
+const getEvents = (request, response, params, head) => { // Change this
   let responseJSON = {};
   let correctEvents = {};
   if (params === undefined || params.eventTitle === undefined) {
@@ -139,20 +139,31 @@ const getEvents = (request, response, params) => { // Change this
     }
     if (empty === true) {
       responseJSON.message = 'Search Successfully Preformed, No Matching Event Stickies Found';
+      responseJSON.id = 'notFound';
+      if (head === false) {
+        return respond(request, response, 404, responseJSON);
+      }
+      return respondMeta(request, response, 404);
     }
   }
 
-  return respond(request, response, 200, responseJSON);
+  if (head === false) {
+    return respond(request, response, 200, responseJSON);
+  }
+  return respondMeta(request, response, 200);
 };
 
 
-const notFound = (request, response/* , params , type */) => {
-  const responseJSON = {
-    message: 'The page you are looking for was not found.',
-    id: 'notFound',
-  };
+const notFound = (request, response, head/* , params , type */) => {
+  if (head === false) {
+    const responseJSON = {
+      message: 'The page you are looking for was not found.',
+      id: 'notFound',
+    };
 
-  return respond(request, response, 404, responseJSON/* , 'application/json' */);
+    return respond(request, response, 404, responseJSON/* , 'application/json' */);
+  }
+  return respondMeta(request, response, 404);
 };
 
 module.exports = {

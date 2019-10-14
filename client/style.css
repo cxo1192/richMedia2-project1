@@ -42,6 +42,8 @@ html, body {
   text-align: center;
   background-color: rgb(210,177,114);  /*background-image: url(../client/cork.jpg);*/
   box-shadow: 10px 10px 5px black;
+  overflow-wrap: break-word;
+  overflow: auto;
 }
 
 #content b{
@@ -52,10 +54,10 @@ html, body {
 
 #content p {
   /* display: inline; */
-  float: left;
+  float: center;
   background-color: yellow;
   color: black;
-  width: 10%;
+  width: 25%;
   font-size: 1em;
   margin: 1em;
   padding: 1em;
