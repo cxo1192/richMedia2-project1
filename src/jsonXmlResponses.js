@@ -71,7 +71,6 @@ const addEvent = (request, response, body) => {
   events[body.title].desc = body.desc;
 
 
-
   // if response is created, then set our created message
   // and sent response with a message
   if (responseCode === 201) {
@@ -85,10 +84,63 @@ const addEvent = (request, response, body) => {
 };
 
 // return user object as JSON
-const getEvents = (request, response) => { // Change this to give baCK STICKIES BASED ON USERS
-  const responseJSON = {
-    events,
-  };
+const getEvents = (request, response, params) => { // Change this
+  let responseJSON = {};
+  let correctEvents = {};
+  if (params === undefined || params.eventTitle === undefined) {
+    // console.log('Params in getEvents undefined');
+    correctEvents = events;
+    responseJSON = {
+      correctEvents,
+    };
+  } else {
+    // console.log(`params in getEvents defined. They are ${params.eventTitle}`);
+    // let temp = JSON.stringify(events);
+    let empty = true;
+    const entries = Object.entries(events);
+    // for (let i = 0; i < entries.length; i++) {
+    //   if (entries !== undefined) {
+    //     let temp = JSON.stringify(entries[i][0]);
+    //     temp = temp.replace(/"+/g, '');
+    //     if (temp === params.eventTitle) {
+    //       // console.log('true');
+    //       correctEvents[entries[i][0]] = entries[i][1];
+    //       // console.dir(correctEvents);
+    //       responseJSON = {
+    //         correctEvents,
+    //       };
+
+    //       empty = false;
+    //     } else {
+    // console.log(`it failed because temp = ${temp} and params.eventTitle = ${params.eventTitle}`);
+    //     }
+    //   }
+    // }
+    // ////////
+    // eslint throws an error because I do not iterate, above is how to do this with iteration
+    // however that code throws a contradictory error that insists I loop as I have done below
+    for (const [key, data] of entries) { // I learned how to do this from https://zellwk.com/blog/looping-through-js-objects/
+      if (key !== undefined) {
+        let temp = JSON.stringify(key);
+        temp = temp.replace(/"+/g, '');
+        if (temp === params.eventTitle) {
+        // console.log('true');
+          correctEvents[key] = data;
+          // console.dir(correctEvents);
+          responseJSON = {
+            correctEvents,
+          };
+
+          empty = false;
+        } else {
+          console.log(`it failed because temp = ${temp} and params.eventTitle = ${params.eventTitle}`);
+        }
+      }
+    }
+    if (empty === true) {
+      responseJSON.message = 'Search Successfully Preformed, No Matching Event Stickies Found';
+    }
+  }
 
   return respond(request, response, 200, responseJSON);
 };

@@ -48,12 +48,12 @@ const handlePost = (request, response, parsedUrl) => {
 
 
 // handle GET requests
-const handleGet = (request, response, parsedUrl) => {
+const handleGet = (request, response, parsedUrl, params) => {
   // route to correct method based on url
   if (parsedUrl.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
   } else if (parsedUrl.pathname === '/getEvents') {
-    jsonXmlHandler.getEvents(request, response);
+    jsonXmlHandler.getEvents(request, response, params);
   } else if (parsedUrl.pathname === '/notReal') {
     jsonXmlHandler.notFound(request, response);
   } else {
@@ -72,11 +72,12 @@ const urlStruct = {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  // const params = query.parse(parsedUrl.query);    //will need this for get with text
+  const params = query.parse(parsedUrl.query); // will need this for get with text
+  // console.log(`onRequest params: ${JSON.stringify(params)}`);
   // const types = request.headers.accept.split(',');
 
   if (urlStruct[parsedUrl.pathname]) {
-    urlStruct[parsedUrl.pathname](request, response, parsedUrl/* , params, types */);
+    urlStruct[parsedUrl.pathname](request, response, parsedUrl, params/* , types */);
   } else {
     urlStruct.notFound(request, response/* , params, types */);
   }

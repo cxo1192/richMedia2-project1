@@ -17,6 +17,7 @@ html, body {
   border-color: black;
   border-width: 5px;
   padding-bottom: 10px;
+  box-shadow: 10px 7px 5px black;
 }
 
 
@@ -40,6 +41,7 @@ html, body {
   font-size: 2em;
   text-align: center;
   background-color: rgb(210,177,114);  /*background-image: url(../client/cork.jpg);*/
+  box-shadow: 10px 10px 5px black;
 }
 
 #content b{
@@ -62,4 +64,5 @@ html, body {
   overflow: none;
   font-family: "Poor Richard Regular";
   border-style: solid;
+  box-shadow: 10px 10px 5px grey;
 }

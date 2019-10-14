@@ -21,10 +21,10 @@
       }
       
       //if events in response, add to screen
-      if(obj.events) {
-        for(let ev in obj.events){
+      if(obj.correctEvents) {
+        for(let ev in obj.correctEvents){
           const sticky = document.createElement('p');
-          let events = JSON.stringify(ev) + JSON.stringify(obj.events[ev]);
+          let events = JSON.stringify(ev) + JSON.stringify(obj.correctEvents[ev]);
           events = events.replace(/{|}+/g, '');
           events = events.replace(/,/g, '\n');
           events = events.replace('"desc":', 'Description: ');
@@ -131,13 +131,15 @@
       const nameMethod = userForm.getAttribute('method');
       
       //grab the form's url field so we can check user input
-      const eventSearch = userForm.querySelector('#eventSearch');
+      const eventSearchField = userForm.querySelector('#eventSearchField');
       // const methodField = userForm.querySelector('#methodSelect');
        
       //create a new Ajax request (remember this is asynchronous)
       const xhr = new XMLHttpRequest();
       //set the method (GET) and url (action field from form)
-      xhr.open(nameMethod, '/getEvents');
+      // console.log(`eventSearchField.value: ${eventSearchField.value}`);
+      xhr.open(nameMethod, '/getEvents' + `?eventTitle=${eventSearchField.value}`);
+      // console.log(`url sent: '/getEvents' + ?eventTitle=${eventSearchField.value}`);
       //xhr.open(nameMethod, eventSearch.value + `eventTitle=${/*data to grab*/}`); need this for the get ---old
       //xhr.open(nameMethod, '/getEvents' + `eventTitle=${/*data to grab*/}`); need this for the get
       
@@ -209,7 +211,7 @@
         <option value="get">GET</option>
         <option value="head">HEAD</option>
       </select> -->
-      <label for='eventSearch'>Event to Search For: </label>
+      <label for='eventSearch'>Event to Search For (Must be the exact Event Title): </label>
       <input id='eventSearchField' type='text' name='eventSearch' />
       <input type="submit" value="Get Stickys" />
     </form>
